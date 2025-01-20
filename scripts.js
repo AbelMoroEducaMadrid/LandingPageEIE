@@ -31,7 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
       testimonials.forEach((testimonial) => {
         const testimonioElement = document.createElement("div")
         testimonioElement.classList.add("testimonio")
+
+        const starsHTML =
+          '<div class="stars">' + "★".repeat(testimonial.stars) + "☆".repeat(5 - testimonial.stars) + "</div>"
+
         testimonioElement.innerHTML = `
+                ${starsHTML}
                 <p>"${testimonial.quote}"</p>
                 <p class="cliente">${testimonial.client}</p>
             `

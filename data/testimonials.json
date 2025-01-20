@@ -1,15 +1,23 @@
 [
   {
     "quote": "Medida ha transformado completamente nuestra gestión de inventario. Ahora tenemos un control total y hemos reducido los costos significativamente.",
-    "client": "María Rodríguez, Gerente de Operaciones en TechSolutions"
+    "client": "María Rodríguez, Gerente de Operaciones en TechSolutions",
+    "stars": 5
   },
   {
     "quote": "La optimización de rutas de Medida nos ha permitido aumentar nuestra eficiencia de entrega en un 30%. ¡Increíble!",
-    "client": "Carlos Gómez, Director Logístico en LogiExpress"
+    "client": "Carlos Gómez, Director Logístico en LogiExpress",
+    "stars": 4
   },
   {
     "quote": "Gracias a Medida, hemos automatizado nuestros procesos clave y ahora podemos enfocarnos en el crecimiento de nuestro negocio.",
-    "client": "Ana Martínez, CEO de InnovaTech"
+    "client": "Ana Martínez, CEO de InnovaTech",
+    "stars": 5
+  },
+  {
+    "quote": "Desde que implementamos las soluciones de Medida, nuestra productividad ha aumentado en un 40%. Es una inversión que realmente vale la pena.",
+    "client": "Luis Fernández, Propietario de MuebleríaModerna",
+    "stars": 4
   }
 ]
 
