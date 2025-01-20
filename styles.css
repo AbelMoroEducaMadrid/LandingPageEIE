@@ -113,20 +113,36 @@ h2 {
 }
 
 /* CTA styles */
-.ctas {
+/*.ctas {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+}*/
+
+.demo-button {
+  text-align: center;
+  margin-top: 2rem;
 }
 
+.demo-button .btn {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+/* Button Styles */
 .btn {
   display: inline-block;
   padding: 0.8rem 1.5rem;
-  margin: 0 1rem;
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 0;
+  /*Removed margin from .btn*/
+}
+
+.btn:hover {
+  transform: translateY(-2px);
 }
 
 .btn-primary {
@@ -138,7 +154,7 @@ h2 {
   background-color: #0056b3;
 }
 
-.btn-secondary {
+/*.btn-secondary {
   background-color: #6c757d;
   color: #fff;
 }
@@ -154,7 +170,7 @@ h2 {
 
 .btn-tertiary:hover {
   background-color: #218838;
-}
+}*/
 
 /* Servicios styles */
 .servicios-container {
@@ -350,4 +366,45 @@ p,
 .equipo p,
 .testimonio p:not(.cliente) {
   text-align: justify;
+}
+
+/* Demo page styles */
+#demo {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#demo h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#demo p {
+  margin-bottom: 1.5rem;
+}
+
+.demo-content {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.demo-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.demo-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.demo-content .btn {
+  display: inline-block;
+  margin-top: 1rem;
 }
