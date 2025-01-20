@@ -216,6 +216,7 @@ h2 {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
+  text-align: left;
 }
 
 .testimonio p {
@@ -328,8 +329,25 @@ footer {
     flex-direction: column;
   }
 
-  .footer-content > div {
+  .footer-content>div {
     margin-bottom: 2rem;
+  }
+
+  p,
+  .servicio p,
+  .mision-vision p,
+  .valores p,
+  .equipo p,
+  .testimonio p:not(.cliente) {
+    text-align: left;
   }
 }
 
+p,
+.servicio p,
+.mision-vision p,
+.valores p,
+.equipo p,
+.testimonio p:not(.cliente) {
+  text-align: justify;
+}
