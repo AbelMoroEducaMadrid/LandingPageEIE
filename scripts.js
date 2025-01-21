@@ -3,8 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault()
+      const target = document.querySelector(this.getAttribute("href"))
+      const headerOffset = 100
+      const elementPosition = target.getBoundingClientRect().top
+      const offsetPosition = elementPosition - headerOffset
 
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
+      window.scrollBy({
+        top: offsetPosition,
         behavior: "smooth",
       })
     })
@@ -83,27 +88,44 @@ document.addEventListener("DOMContentLoaded", () => {
   // Sobre Medida Slideshow
   createSlideshow(".sobre-medida-slideshow", ".sobre-medida-nav", "data/sobre-medida.json")
 
-  // Fetch and display testimonials
-  fetch("data/testimonials.json")
-    .then((response) => response.json())
-    .then((testimonials) => {
-      const testimoniosContainer = document.querySelector(".testimonios-container")
-      testimonials.forEach((testimonial) => {
-        const testimonioElement = document.createElement("div")
-        testimonioElement.classList.add("testimonio")
+  // Add a new function for the testimonials slideshow:
+  function createTestimonialsSlideshow() {
+    const container = document.querySelector(".testimonios-slideshow")
+    let testimonials = []
+    let currentIndex = 0
 
-        const starsHTML =
-          '<div class="stars">' + "★".repeat(testimonial.stars) + "☆".repeat(5 - testimonial.stars) + "</div>"
+    function showTestimonials() {
+      container.innerHTML = ""
+      for (let i = 0; i < 2; i++) {
+        const index = (currentIndex + i) % testimonials.length
+        container.appendChild(testimonials[index].cloneNode(true))
+      }
+      currentIndex = (currentIndex + 1) % testimonials.length
+    }
 
-        testimonioElement.innerHTML = `
-          ${starsHTML}
-          <p>"${testimonial.quote}"</p>
-          <p class="cliente">${testimonial.client}</p>
-        `
-        testimoniosContainer.appendChild(testimonioElement)
+    fetch("data/testimonials.json")
+      .then((response) => response.json())
+      .then((data) => {
+        testimonials = data.map((testimonial) => {
+          const testimonioElement = document.createElement("div")
+          testimonioElement.classList.add("testimonio")
+          const starsHTML =
+            '<div class="stars">' + "★".repeat(testimonial.stars) + "☆".repeat(5 - testimonial.stars) + "</div>"
+          testimonioElement.innerHTML = `
+            ${starsHTML}
+            <p>"${testimonial.quote}"</p>
+            <p class="cliente">${testimonial.client}</p>
+          `
+          return testimonioElement
+        })
+        showTestimonials()
+        setInterval(showTestimonials, 5000)
       })
-    })
-    .catch((error) => console.error("Error loading testimonials:", error))
+      .catch((error) => console.error("Error loading testimonials:", error))
+  }
+
+  // Testimonials Slideshow
+  createTestimonialsSlideshow()
 
   // Form submission
   const contactForm = document.getElementById("contactForm")

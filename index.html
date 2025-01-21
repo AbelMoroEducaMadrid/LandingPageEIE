@@ -16,6 +16,7 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -32,7 +33,7 @@
                 </div>
             </div>
             <div class="demo-button">
-                <a href="demo.html" class="btn btn-primary">Ver Demo</a>
+                <a href="https://example.com/demo" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver Demo</a>
             </div>
         </section>
 
@@ -86,40 +87,54 @@
 
         <section id="testimonios">
             <h2>Lo que dicen nuestros clientes</h2>
-            <div class="testimonios-container"></div>
+            <div class="testimonios-slideshow">
+                <!-- Testimonials will be dynamically inserted here -->
+            </div>
         </section>
 
         <section id="contacto">
             <h2>Contáctanos</h2>
-            <form id="contactForm">
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <input type="tel" name="telefono" placeholder="Teléfono">
-                <textarea name="mensaje" placeholder="Mensaje" required></textarea>
-                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-            </form>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>¿Por qué contactarnos?</h3>
+                    <ul>
+                        <li><i class="fas fa-calculator"></i> Quieres un presupuesto</li>
+                        <li><i class="fas fa-info-circle"></i> Necesitas más información</li>
+                        <li><i class="fas fa-calendar-alt"></i> Deseas pedir una cita</li>
+                        <li><i class="fas fa-briefcase"></i> Quieres trabajar con nosotros</li>
+                    </ul>
+                </div>
+                <form id="contactForm">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                    <input type="tel" name="telefono" placeholder="Teléfono">
+                    <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                </form>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
-            <div class="contacto-info">
+            <div class="footer-section">
                 <h3>Contacto</h3>
-                <p>Email: info@medida.com</p>
-                <p>Teléfono: +34 900 123 456</p>
+                <p><i class="fas fa-envelope"></i> info@medida.com</p>
+                <p><i class="fas fa-phone"></i> +34 900 123 456</p>
+                <p><i class="fab fa-whatsapp"></i> +34 600 789 012</p>
             </div>
-            <div class="redes-sociales">
+            <div class="footer-section">
                 <h3>Síguenos</h3>
-                <a href="#" target="_blank">Facebook</a>
-                <a href="#" target="_blank">Twitter</a>
-                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
             </div>
-            <div class="enlaces-rapidos">
+            <div class="footer-section">
                 <h3>Enlaces rápidos</h3>
-                <a href="#inicio">Inicio</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#contacto">Contacto</a>
+                <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+                <a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a>
+                <a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a>
+                <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
             </div>
         </div>
         <div class="copyright">
