@@ -10,13 +10,55 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Slideshow
-  const slideshowContainer = document.querySelector(".slideshow")
-  const slideshowNav = document.querySelector(".slideshow-nav")
-  const slides = []
-  let currentSlide = 0
+  // Generic Slideshow function
+  function createSlideshow(containerSelector, navSelector, dataUrl, slideCreator) {
+    const container = document.querySelector(containerSelector)
+    const nav = document.querySelector(navSelector)
+    const slides = []
+    let currentSlide = 0
 
-  function createSlide(slideData, index) {
+    function showNextSlide() {
+      slides[currentSlide].classList.remove("active")
+      nav.children[currentSlide].classList.remove("active")
+      currentSlide = (currentSlide + 1) % slides.length
+      slides[currentSlide].classList.add("active")
+      nav.children[currentSlide].classList.add("active")
+    }
+
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove("active")
+      nav.children[currentSlide].classList.remove("active")
+      currentSlide = index
+      slides[currentSlide].classList.add("active")
+      nav.children[currentSlide].classList.add("active")
+    }
+
+    fetch(dataUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((slideData, index) => {
+          const slide = slideCreator(slideData, index)
+          container.appendChild(slide)
+          slides.push(slide)
+
+          const navDot = document.createElement("div")
+          navDot.classList.add("nav-dot")
+          if (index === 0) {
+            navDot.classList.add("active")
+          }
+          navDot.addEventListener("click", () => {
+            goToSlide(index)
+          })
+          nav.appendChild(navDot)
+        })
+
+        setInterval(showNextSlide, 5000)
+      })
+      .catch((error) => console.error(`Error loading slideshow from ${dataUrl}:`, error))
+  }
+
+  // Main Slideshow
+  createSlideshow(".slideshow", ".slideshow-nav", "data/slideshow.json", (slideData, index) => {
     const slide = document.createElement("div")
     slide.classList.add("slide")
     slide.style.backgroundImage = `url(${slideData.image})`
@@ -39,52 +81,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return slide
-  }
+  })
 
-  function createNavDot(index) {
-    const dot = document.createElement("div")
-    dot.classList.add("nav-dot")
+  // Sobre Medida Slideshow
+  createSlideshow(".sobre-medida-slideshow", ".sobre-medida-nav", "data/sobre-medida.json", (slideData, index) => {
+    const slide = document.createElement("div")
+    slide.classList.add("slide")
+
+    const content = document.createElement("div")
+    content.classList.add("slide-content")
+
+    const title = document.createElement("h3")
+    title.textContent = slideData.title
+
+    const text = document.createElement("p")
+    text.textContent = slideData.content
+
+    content.appendChild(title)
+    content.appendChild(text)
+    slide.appendChild(content)
+
     if (index === 0) {
-      dot.classList.add("active")
+      slide.classList.add("active")
     }
-    dot.addEventListener("click", () => {
-      goToSlide(index)
-    })
-    return dot
-  }
 
-  function showNextSlide() {
-    slides[currentSlide].classList.remove("active")
-    slideshowNav.children[currentSlide].classList.remove("active")
-    currentSlide = (currentSlide + 1) % slides.length
-    slides[currentSlide].classList.add("active")
-    slideshowNav.children[currentSlide].classList.add("active")
-  }
-
-  function goToSlide(index) {
-    slides[currentSlide].classList.remove("active")
-    slideshowNav.children[currentSlide].classList.remove("active")
-    currentSlide = index
-    slides[currentSlide].classList.add("active")
-    slideshowNav.children[currentSlide].classList.add("active")
-  }
-
-  // Fetch and display slideshow
-  fetch("data/slideshow.json")
-    .then((response) => response.json())
-    .then((slideshowData) => {
-      slideshowData.forEach((slideData, index) => {
-        const slide = createSlide(slideData, index)
-        slideshowContainer.appendChild(slide)
-        slides.push(slide)
-
-        const navDot = createNavDot(index)
-        slideshowNav.appendChild(navDot)
-      })
-
-      setInterval(showNextSlide, 5000)
-    })
-    .catch((error) => console.error("Error loading slideshow:", error))
+    return slide
+  })
 
   // Fetch and display testimonials
   fetch("data/testimonials.json")
