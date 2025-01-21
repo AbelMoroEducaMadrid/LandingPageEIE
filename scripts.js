@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Sobre Medida Slideshow
   createSlideshow(".sobre-medida-slideshow", ".sobre-medida-nav", "data/sobre-medida.json")
 
-  // Add a new function for the testimonials slideshow:
+  // Testimonials slideshow
   function createTestimonialsSlideshow() {
     const container = document.querySelector(".testimonios-slideshow")
     let testimonials = []
@@ -124,14 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => console.error("Error loading testimonials:", error))
   }
 
-  // Testimonials Slideshow
   createTestimonialsSlideshow()
 
-  // Form submission
+  // Form
   const contactForm = document.getElementById("contactForm")
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault()
-    // Here you would typically send the form data to a server
+    // Send form data to server
     alert("Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.")
     contactForm.reset()
   })
