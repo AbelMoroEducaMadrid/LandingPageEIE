@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Misión",
+    "content": "Empoderar a las PyMEs con soluciones tecnológicas innovadoras para optimizar sus operaciones y impulsar su crecimiento.",
+    "image": "images/mision_1920x1080.jpg"
+  },
+  {
+    "title": "Visión",
+    "content": "Ser el aliado tecnológico preferido de las PyMEs en su camino hacia la transformación digital y el éxito empresarial.",
+    "image": "images/vision_1920x1080.jpg"
+  },
+  {
+    "title": "Nuestros Valores",
+    "content": "Innovación constante, Compromiso con el cliente, Excelencia en el servicio, Adaptabilidad",
+    "image": "images/valores_1920x1080.jpg"
+  },
+  {
+    "title": "Nuestro Equipo",
+    "content": "Contamos con un equipo de expertos en tecnología y procesos empresariales dedicados a impulsar el éxito de nuestros clientes.",
+    "image": "images/equipo_1920x1080.jpg"
+  }
+]

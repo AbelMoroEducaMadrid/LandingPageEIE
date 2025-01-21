@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   // Generic Slideshow function
-  function createSlideshow(containerSelector, navSelector, dataUrl, slideCreator) {
+  function createSlideshow(containerSelector, navSelector, dataUrl) {
     const container = document.querySelector(containerSelector)
     const nav = document.querySelector(navSelector)
     const slides = []
@@ -37,7 +37,27 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         data.forEach((slideData, index) => {
-          const slide = slideCreator(slideData, index)
+          const slide = document.createElement("div")
+          slide.classList.add("slide")
+          slide.style.backgroundImage = `url(${slideData.image})`
+
+          const content = document.createElement("div")
+          content.classList.add("slide-content")
+
+          const title = document.createElement("h2")
+          title.textContent = slideData.title
+
+          const text = document.createElement("p")
+          text.textContent = slideData.content || slideData.text
+
+          content.appendChild(title)
+          content.appendChild(text)
+          slide.appendChild(content)
+
+          if (index === 0) {
+            slide.classList.add("active")
+          }
+
           container.appendChild(slide)
           slides.push(slide)
 
@@ -58,55 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Main Slideshow
-  createSlideshow(".slideshow", ".slideshow-nav", "data/slideshow.json", (slideData, index) => {
-    const slide = document.createElement("div")
-    slide.classList.add("slide")
-    slide.style.backgroundImage = `url(${slideData.image})`
-
-    const content = document.createElement("div")
-    content.classList.add("slide-content")
-
-    const title = document.createElement("h2")
-    title.textContent = slideData.title
-
-    const text = document.createElement("p")
-    text.textContent = slideData.text
-
-    content.appendChild(title)
-    content.appendChild(text)
-    slide.appendChild(content)
-
-    if (index === 0) {
-      slide.classList.add("active")
-    }
-
-    return slide
-  })
+  createSlideshow(".slideshow", ".slideshow-nav", "data/slideshow.json")
 
   // Sobre Medida Slideshow
-  createSlideshow(".sobre-medida-slideshow", ".sobre-medida-nav", "data/sobre-medida.json", (slideData, index) => {
-    const slide = document.createElement("div")
-    slide.classList.add("slide")
-
-    const content = document.createElement("div")
-    content.classList.add("slide-content")
-
-    const title = document.createElement("h3")
-    title.textContent = slideData.title
-
-    const text = document.createElement("p")
-    text.textContent = slideData.content
-
-    content.appendChild(title)
-    content.appendChild(text)
-    slide.appendChild(content)
-
-    if (index === 0) {
-      slide.classList.add("active")
-    }
-
-    return slide
-  })
+  createSlideshow(".sobre-medida-slideshow", ".sobre-medida-nav", "data/sobre-medida.json")
 
   // Fetch and display testimonials
   fetch("data/testimonials.json")

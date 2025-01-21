@@ -62,7 +62,6 @@ main {
 
 section {
   margin-bottom: 4rem;
-  padding: 0 2rem;
 }
 
 h2 {
@@ -96,12 +95,6 @@ h2 {
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
   background-size: cover;
   background-position: center;
 }
@@ -112,18 +105,19 @@ h2 {
 
 .slide-content {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: left;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 50%;
+  padding: 40px;
+  color: #fff;
 }
 
 .slide h2 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  text-align: left;
 }
 
 .slide p {
@@ -220,19 +214,8 @@ h2 {
 }
 
 /* Nosotros styles */
-.mision-vision {
-  display: flex;
-  justify-content: space-between;
+.sobre-medida-container {
   margin-bottom: 2rem;
-}
-
-.mision-vision div {
-  flex-basis: 48%;
-}
-
-.valores ul {
-  list-style-position: inside;
-  columns: 2;
 }
 
 /* Testimonios styles */
@@ -336,14 +319,12 @@ footer {
     margin-right: 1rem;
   }
 
-  .servicios-container,
-  .mision-vision {
+  .servicios-container {
     flex-direction: column;
   }
 
   .servicio,
-  .servicios-container .servicio,
-  .mision-vision div {
+  .servicios-container .servicio {
     flex-basis: 100%;
     margin-bottom: 2rem;
   }
@@ -368,90 +349,21 @@ footer {
     font-size: 0.9rem;
   }
   .slide-content {
-    bottom: 20px;
-    left: 20px;
-    max-width: 80%;
+    padding: 20px;
+  }
+
+  .testimonios-container {
+    flex-direction: column;
+  }
+
+  .testimonio {
+    flex-basis: 100%;
   }
 }
 
 p,
 .servicio p,
-.mision-vision p,
-.valores p,
-.equipo p,
 .testimonio p:not(.cliente) {
   text-align: justify;
-}
-
-/* Sobre Medida Slideshow styles */
-.sobre-medida-slideshow {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.sobre-medida-slideshow .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  background-color: #f8f9fa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sobre-medida-slideshow .slide.active {
-  opacity: 1;
-}
-
-.sobre-medida-slideshow .slide-content {
-  text-align: center;
-  padding: 2rem;
-  max-width: 80%;
-}
-
-.sobre-medida-slideshow h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-}
-
-.sobre-medida-nav {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.sobre-medida-nav .nav-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #ccc;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sobre-medida-nav .nav-dot.active {
-  background-color: #007bff;
-}
-
-@media (max-width: 768px) {
-  .sobre-medida-slideshow {
-    height: 400px;
-  }
-
-  .sobre-medida-slideshow .slide-content {
-    padding: 1rem;
-  }
-
-  .sobre-medida-slideshow h3 {
-    font-size: 1.5rem;
-  }
 }
 
