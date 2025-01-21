@@ -11,17 +11,80 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   // Slideshow
-  const slideshowImages = document.querySelectorAll(".slideshow img")
+  const slideshowContainer = document.querySelector(".slideshow")
+  const slideshowNav = document.querySelector(".slideshow-nav")
+  const slides = []
   let currentSlide = 0
 
-  function showNextSlide() {
-    slideshowImages[currentSlide].classList.remove("active")
-    currentSlide = (currentSlide + 1) % slideshowImages.length
-    slideshowImages[currentSlide].classList.add("active")
+  function createSlide(slideData, index) {
+    const slide = document.createElement("div")
+    slide.classList.add("slide")
+    slide.style.backgroundImage = `url(${slideData.image})`
+
+    const content = document.createElement("div")
+    content.classList.add("slide-content")
+
+    const title = document.createElement("h2")
+    title.textContent = slideData.title
+
+    const text = document.createElement("p")
+    text.textContent = slideData.text
+
+    content.appendChild(title)
+    content.appendChild(text)
+    slide.appendChild(content)
+
+    if (index === 0) {
+      slide.classList.add("active")
+    }
+
+    return slide
   }
 
-  setInterval(showNextSlide, 5000)
-  slideshowImages[0].classList.add("active")
+  function createNavDot(index) {
+    const dot = document.createElement("div")
+    dot.classList.add("nav-dot")
+    if (index === 0) {
+      dot.classList.add("active")
+    }
+    dot.addEventListener("click", () => {
+      goToSlide(index)
+    })
+    return dot
+  }
+
+  function showNextSlide() {
+    slides[currentSlide].classList.remove("active")
+    slideshowNav.children[currentSlide].classList.remove("active")
+    currentSlide = (currentSlide + 1) % slides.length
+    slides[currentSlide].classList.add("active")
+    slideshowNav.children[currentSlide].classList.add("active")
+  }
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove("active")
+    slideshowNav.children[currentSlide].classList.remove("active")
+    currentSlide = index
+    slides[currentSlide].classList.add("active")
+    slideshowNav.children[currentSlide].classList.add("active")
+  }
+
+  // Fetch and display slideshow
+  fetch("data/slideshow.json")
+    .then((response) => response.json())
+    .then((slideshowData) => {
+      slideshowData.forEach((slideData, index) => {
+        const slide = createSlide(slideData, index)
+        slideshowContainer.appendChild(slide)
+        slides.push(slide)
+
+        const navDot = createNavDot(index)
+        slideshowNav.appendChild(navDot)
+      })
+
+      setInterval(showNextSlide, 5000)
+    })
+    .catch((error) => console.error("Error loading slideshow:", error))
 
   // Fetch and display testimonials
   fetch("data/testimonials.json")
@@ -36,10 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
           '<div class="stars">' + "★".repeat(testimonial.stars) + "☆".repeat(5 - testimonial.stars) + "</div>"
 
         testimonioElement.innerHTML = `
-                ${starsHTML}
-                <p>"${testimonial.quote}"</p>
-                <p class="cliente">${testimonial.client}</p>
-            `
+          ${starsHTML}
+          <p>"${testimonial.quote}"</p>
+          <p class="cliente">${testimonial.client}</p>
+        `
         testimoniosContainer.appendChild(testimonioElement)
       })
     })

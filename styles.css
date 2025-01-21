@@ -55,13 +55,13 @@ nav ul li a:hover {
 
 /* Main content styles */
 main {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
 }
 
 section {
   margin-bottom: 4rem;
+  padding: 0 2rem;
 }
 
 h2 {
@@ -71,54 +71,81 @@ h2 {
 }
 
 /* Slideshow styles */
-.slideshow {
+.slideshow-container {
   position: relative;
+  width: 100%;
   height: 600px;
   overflow: hidden;
 }
 
-.slideshow img {
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
 }
 
-.slideshow img.active {
+.slide.active {
   opacity: 1;
 }
 
-/* Servicios principales styles */
-.servicios-principales {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-.servicio {
-  flex-basis: 48%;
-  background-color: #f8f9fa;
+.slide-content {
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.servicio h2 {
-  font-size: 1.5rem;
+.slide h2 {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-/* CTA styles */
-/*.ctas {
+.slide p {
+  font-size: 1.2rem;
+}
+
+.slideshow-nav {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
-}*/
+  align-items: center;
+}
 
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-dot.active {
+  background-color: #fff;
+}
+
+/* Demo button styles */
 .demo-button {
   text-align: center;
   margin-top: 2rem;
@@ -138,7 +165,6 @@ h2 {
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.3s ease;
   margin: 0;
-  /*Removed margin from .btn*/
 }
 
 .btn:hover {
@@ -153,24 +179,6 @@ h2 {
 .btn-primary:hover {
   background-color: #0056b3;
 }
-
-/*.btn-secondary {
-  background-color: #6c757d;
-  color: #fff;
-}
-
-.btn-secondary:hover {
-  background-color: #545b62;
-}
-
-.btn-tertiary {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.btn-tertiary:hover {
-  background-color: #218838;
-}*/
 
 /* Servicios styles */
 .servicios-container {
@@ -319,7 +327,6 @@ footer {
     margin-right: 1rem;
   }
 
-  .servicios-principales,
   .servicios-container,
   .mision-vision {
     flex-direction: column;
@@ -332,30 +339,24 @@ footer {
     margin-bottom: 2rem;
   }
 
-  .ctas {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn {
-    margin: 0.5rem 0;
-  }
-
   .footer-content {
     flex-direction: column;
   }
 
-  .footer-content>div {
+  .footer-content > div {
     margin-bottom: 2rem;
   }
 
-  p,
-  .servicio p,
-  .mision-vision p,
-  .valores p,
-  .equipo p,
-  .testimonio p:not(.cliente) {
-    text-align: left;
+  .slideshow-container {
+    height: 400px;
+  }
+
+  .slide h2 {
+    font-size: 2rem;
+  }
+
+  .slide p {
+    font-size: 1rem;
   }
 }
 
@@ -368,43 +369,3 @@ p,
   text-align: justify;
 }
 
-/* Demo page styles */
-#demo {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-#demo h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-#demo p {
-  margin-bottom: 1.5rem;
-}
-
-.demo-content {
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.demo-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.demo-content ul {
-  list-style-type: disc;
-  margin-left: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.demo-content .btn {
-  display: inline-block;
-  margin-top: 1rem;
-}
