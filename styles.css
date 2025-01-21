@@ -387,7 +387,7 @@ footer {
     flex-direction: column;
   }
 
-  .footer-content > div {
+  .footer-content>div {
     margin-bottom: 2rem;
   }
 
@@ -402,6 +402,7 @@ footer {
   .slide p {
     font-size: 0.9rem;
   }
+
   .slide-content {
     padding: 20px;
   }
@@ -413,6 +414,7 @@ footer {
   .testimonio {
     flex-basis: 100%;
   }
+
   .contact-container {
     flex-direction: column;
   }
@@ -432,4 +434,3 @@ p,
 .testimonio p:not(.cliente) {
   text-align: justify;
 }
-
