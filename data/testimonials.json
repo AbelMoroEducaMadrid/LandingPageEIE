@@ -18,5 +18,30 @@
     "quote": "Desde que implementamos las soluciones de Medida, nuestra productividad ha aumentado en un 40%. Es una inversión que realmente vale la pena.",
     "client": "Luis Fernández, Propietario de MuebleríaModerna",
     "stars": 4
+  },
+  {
+    "quote": "Before Medida, our warehouse was a chaotic mess. Now, everything runs like clockwork, and our team is much happier. Highly recommended!",
+    "client": "John Miller, Operations Manager at GlobalTrade",
+    "stars": 5
+  },
+  {
+    "quote": "Medida hat unser Unternehmen revolutioniert! Wir sparen Zeit, Geld und Nerven. Ein Muss für jede Firma!",
+    "client": "Stefan Meier, Geschäftsführer von LogistikPro",
+    "stars": 5
+  },
+  {
+    "quote": "Medida me ha ahorrado tantas horas de trabajo que ahora tengo tiempo para aprender a hacer pan casero. ¡Gracias, Medida!",
+    "client": "Pablo Ramírez, Administrador en SuperAlmacenes",
+    "stars": 4
+  },
+  {
+    "quote": "Desde que usamos Medida, nuestros informes se generan solos y las decisiones son más rápidas. ¡Hasta el café sabe mejor en la oficina!",
+    "client": "Elena Torres, Directora de Finanzas en CorporativoXY",
+    "stars": 5
+  },
+  {
+    "quote": "Avec Medida, notre production est plus efficace et nous avons réduit nos coûts de 25 %. Une solution incontournable pour toute entreprise.",
+    "client": "François Morel, Directeur de Production chez FabriTech",
+    "stars": 5
   }
 ]
