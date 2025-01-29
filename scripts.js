@@ -84,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
           nav.appendChild(navDot)
         })
 
-        setInterval(showNextSlide, 5000)
         startSlideTimer()
       })
       .catch((error) => console.error(`Error loading slideshow from ${dataUrl}:`, error))
@@ -103,24 +102,48 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0
 
     function showTestimonials() {
-      container.innerHTML = ""
-      for (let i = 0; i < 2; i++) {
-        const index = (currentIndex + i) % testimonials.length
-        const testimonialElement = testimonials[index].cloneNode(true)
-        animateStars(testimonialElement.querySelector(".stars"))
-        container.appendChild(testimonialElement)
-      }
-      currentIndex = (currentIndex + 2) % testimonials.length
+      const oldTestimonials = container.querySelectorAll(".testimonio")
+      oldTestimonials.forEach((testimonial) => {
+        testimonial.style.opacity = "0"
+        testimonial.style.transform = "translateY(20px)"
+      })
+
+      setTimeout(() => {
+        container.innerHTML = ""
+        for (let i = 0; i < 2; i++) {
+          const index = (currentIndex + i) % testimonials.length
+          const testimonialElement = testimonials[index].cloneNode(true)
+          testimonialElement.style.opacity = "0"
+          testimonialElement.style.transform = "translateY(20px)"
+          animateStars(testimonialElement.querySelector(".stars"))
+          container.appendChild(testimonialElement)
+
+          setTimeout(() => {
+            testimonialElement.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out"
+            testimonialElement.style.opacity = "1"
+            testimonialElement.style.transform = "translateY(0)"
+          }, 50)
+        }
+        currentIndex = (currentIndex + 2) % testimonials.length
+      }, 500)
     }
 
     function animateStars(starsElement) {
-      starsElement.style.opacity = "0"
-      starsElement.style.transform = "scale(0.8)"
-      setTimeout(() => {
-        starsElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out"
-        starsElement.style.opacity = "1"
-        starsElement.style.transform = "scale(1)"
-      }, 50)
+      const stars = starsElement.textContent.split("")
+      starsElement.textContent = ""
+      stars.forEach((star, index) => {
+        const starSpan = document.createElement("span")
+        starSpan.textContent = star
+        starSpan.style.opacity = "0"
+        starSpan.style.transform = "scale(0.5)"
+        starsElement.appendChild(starSpan)
+
+        setTimeout(() => {
+          starSpan.style.transition = "opacity 0.3s ease-in-out, transform 0.3s ease-in-out"
+          starSpan.style.opacity = "1"
+          starSpan.style.transform = "scale(1)"
+        }, index * 100)
+      })
     }
 
     fetch("data/testimonials.json")
@@ -139,12 +162,61 @@ document.addEventListener("DOMContentLoaded", () => {
           return testimonioElement
         })
         showTestimonials()
-        setInterval(showTestimonials, 5000)
+        setInterval(showTestimonials, 8000)
       })
       .catch((error) => console.error("Error loading testimonials:", error))
   }
 
   createTestimonialsSlideshow()
+
+  // Logo and slogan animation
+  function animateLogoAndSlogan() {
+    const container = document.querySelector(".logo-slogan-container")
+    const logo = document.querySelector(".servicios-logo")
+    const slogan = document.querySelector(".servicios-slogan")
+    const sloganText = "Automatizamos tu presente,\nsimplificando tu futuro."
+
+    // Check if it's a mobile device
+    const isMobile = window.innerWidth <= 768
+
+    if (!isMobile) {
+      logo.style.transform = "translateX(0)"
+      slogan.style.opacity = "0"
+      slogan.style.transform = "translateX(50px)"
+
+      setTimeout(() => {
+        logo.style.transform = "translateX(-25%)"
+      }, 500)
+
+      setTimeout(() => {
+        slogan.style.opacity = "1"
+        slogan.style.transform = "translateX(0)"
+      }, 1500)
+
+      setTimeout(() => {
+        let i = 0
+        const typingInterval = setInterval(() => {
+          if (sloganText[i] === "\n") {
+            slogan.innerHTML += "<br>"
+          } else {
+            slogan.innerHTML += sloganText[i]
+          }
+          i++
+          if (i === sloganText.length) {
+            clearInterval(typingInterval)
+          }
+        }, 50)
+      }, 2000)
+    } else {
+      // For mobile, set the logo and slogan to their final positions immediately
+      logo.style.transform = "translateX(0)"
+      slogan.style.opacity = "1"
+      slogan.style.transform = "translateX(0)"
+      slogan.innerHTML = sloganText.replace("\n", "<br>")
+    }
+  }
+
+  animateLogoAndSlogan()
 
   // Form
   const contactForm = document.getElementById("contactForm")

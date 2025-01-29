@@ -40,8 +40,10 @@
         <section id="servicios">
             <div class="servicios-header">
                 <h2>Nuestros Servicios</h2>
-                <img src="images/logo-large.png" alt="Medida Logo" class="servicios-logo">                
-                <p class="servicios-slogan">Automatizamos tu presente, simplificando tu futuro.</p>
+                <div class="logo-slogan-container">
+                    <img src="images/svg/logoA.svg" alt="Medida Logo" class="servicios-logo">
+                    <p class="servicios-slogan"></p>
+                </div>
             </div>
             <div class="servicios-container">
                 <div class="servicio">
@@ -104,19 +106,18 @@
         <section id="contacto">
             <h2>Contáctanos</h2>
             <div class="contact-container">
-                <div class="contact-info">
-                    <h3>¿Por qué contactarnos?</h3>
-                    <ul>
-                        <li><i class="fas fa-calculator"></i> Quieres un presupuesto</li>
-                        <li><i class="fas fa-info-circle"></i> Necesitas más información</li>
-                        <li><i class="fas fa-calendar-alt"></i> Deseas pedir una cita</li>
-                        <li><i class="fas fa-briefcase"></i> Quieres trabajar con nosotros</li>
-                    </ul>
-                </div>
                 <form id="contactForm">
                     <input type="text" name="nombre" placeholder="Nombre" required>
                     <input type="email" name="email" placeholder="Correo electrónico" required>
                     <input type="tel" name="telefono" placeholder="Teléfono">
+                    <select name="asunto" required>
+                        <option value="" disabled selected>Selecciona un asunto</option>
+                        <option value="presupuesto">Quiero un presupuesto</option>
+                        <option value="informacion">Necesito más información</option>
+                        <option value="cita">Deseo pedir una cita</option>
+                        <option value="trabajo">Quiero trabajar con ustedes</option>
+                        <option value="otro">Otro</option>
+                    </select>
                     <textarea name="mensaje" placeholder="Mensaje" required></textarea>
                     <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                 </form>
