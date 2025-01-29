@@ -226,5 +226,25 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.")
     contactForm.reset()
   })
+
+  // Particle effect
+  function createParticles() {
+    const particlesContainer = document.querySelector(".particles")
+    const particleCount = 20
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("div")
+      particle.classList.add("particle")
+      particle.style.left = `${Math.random() * 100}%`
+      particle.style.top = `${Math.random() * 100}%`
+      particle.style.width = `${Math.random() * 10 + 5}px`
+      particle.style.height = particle.style.width
+      particle.style.animationDuration = `${Math.random() * 10 + 5}s`
+      particle.style.animationDelay = `${Math.random() * 5}s`
+      particlesContainer.appendChild(particle)
+    }
+  }
+
+  createParticles()
 })
 
