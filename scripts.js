@@ -226,11 +226,11 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.")
     contactForm.reset()
   })
-
+  
   // Particle effect
   function createParticles() {
     const particlesContainer = document.querySelector(".particles")
-    const particleCount = 20
+    const particleCount = 100
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement("div")
