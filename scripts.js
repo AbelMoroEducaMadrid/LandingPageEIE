@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nav = document.querySelector(navSelector)
     const slides = []
     let currentSlide = 0
+    let slideInterval
 
     function showNextSlide() {
       slides[currentSlide].classList.remove("active")
@@ -30,12 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.children[currentSlide].classList.add("active")
     }
 
+    function startSlideTimer() {
+      clearInterval(slideInterval)
+      slideInterval = setInterval(showNextSlide, 5000)
+    }
+
     function goToSlide(index) {
       slides[currentSlide].classList.remove("active")
       nav.children[currentSlide].classList.remove("active")
       currentSlide = index
       slides[currentSlide].classList.add("active")
       nav.children[currentSlide].classList.add("active")
+      startSlideTimer()
     }
 
     fetch(dataUrl)
@@ -78,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
         setInterval(showNextSlide, 5000)
+        startSlideTimer()
       })
       .catch((error) => console.error(`Error loading slideshow from ${dataUrl}:`, error))
   }
@@ -98,9 +106,21 @@ document.addEventListener("DOMContentLoaded", () => {
       container.innerHTML = ""
       for (let i = 0; i < 2; i++) {
         const index = (currentIndex + i) % testimonials.length
-        container.appendChild(testimonials[index].cloneNode(true))
+        const testimonialElement = testimonials[index].cloneNode(true)
+        animateStars(testimonialElement.querySelector(".stars"))
+        container.appendChild(testimonialElement)
       }
-      currentIndex = (currentIndex + 1) % testimonials.length
+      currentIndex = (currentIndex + 2) % testimonials.length
+    }
+
+    function animateStars(starsElement) {
+      starsElement.style.opacity = "0"
+      starsElement.style.transform = "scale(0.8)"
+      setTimeout(() => {
+        starsElement.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out"
+        starsElement.style.opacity = "1"
+        starsElement.style.transform = "scale(1)"
+      }, 50)
     }
 
     fetch("data/testimonials.json")
